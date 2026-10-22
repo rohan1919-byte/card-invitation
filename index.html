@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Engagement Invitation | Hemalata and Sanket</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Yatra+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --maroon: #6b0f1a;
+        --deep: #3d0710;
+        --gold: #e8b04a;
+        --haldi: #f5c518;
+        --kumkum: #c8102e;
+        --cream: #fff4dc;
+        --text: #fff4dc;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --maroon: #5a0c16;
+          --deep: #2e050c;
+        }
+      }
+      :root[data-theme="dark"] {
+        --maroon: #5a0c16;
+        --deep: #2e050c;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: radial-gradient(
+          circle at 50% 0%,
+          var(--maroon),
+          var(--deep) 70%
+        );
+        color: var(--text);
+        font-family: "Cormorant Garamond", Georgia, serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+        font-size: 21px;
+        font-weight: 500;
+      }
+      body.lock {
+        overflow: hidden;
+        height: 100vh;
+      }
+      h1,
+      h2,
+      h3,
+      .yatra {
+        font-family: "Yatra One", serif;
+        font-weight: 400;
+      }
+      .gold {
+        color: var(--gold);
+      }
+      .paithani {
+        height: 22px;
+        background:
+          linear-gradient(135deg, var(--gold) 25%, transparent 25%) -11px 0,
+          linear-gradient(225deg, var(--gold) 25%, transparent 25%) -11px 0,
+          linear-gradient(315deg, var(--gold) 25%, transparent 25%),
+          linear-gradient(45deg, var(--gold) 25%, transparent 25%);
+        background-size: 22px 22px;
+        background-color: var(--kumkum);
+        border-block: 3px solid var(--gold);
+      }
+      #curtain {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+      }
+      .panel {
+        flex: 1;
+        background: repeating-linear-gradient(
+          90deg,
+          #7a0f1d 0 18px,
+          #5a0a15 18px 36px
+        );
+        position: relative;
+        border-inline: 4px solid var(--gold);
+      }
+      .panel::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 22px;
+        background: linear-gradient(var(--gold), #b8862b);
+      }
+      .panel.l::after {
+        right: 0;
+      }
+      .panel.r::after {
+        left: 0;
+      }
+      #seal {
+        position: fixed;
+        z-index: 101;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        cursor: pointer;
+        width: min(86vw, 340px);
+      }
+      #seal .ring {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--kumkum), #8a0b1f);
+        border: 5px double var(--gold);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 0 40px rgba(232, 176, 74, 0.5);
+      }
+      #seal .ring svg {
+        width: 84px;
+        height: 84px;
+      }
+      #seal p {
+        font-size: 20px;
+        color: var(--gold);
+      }
+      #seal small {
+        display: block;
+        margin-top: 6px;
+        opacity: 0.8;
+      }
+      #toran {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        height: 78px;
+        pointer-events: none;
+        display: flex;
+        justify-content: space-around;
+        transform: translateY(-110px);
+        border-top: 4px solid var(--gold);
+      }
+      #toran span {
+        transform-origin: top center;
+        display: block;
+        line-height: 0;
+      }
+      #toran svg {
+        width: 44px;
+        height: 52px;
+      }
+      #petals {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 40;
+        overflow: hidden;
+      }
+      .petal {
+        position: absolute;
+        top: -30px;
+        width: 14px;
+        height: 18px;
+        border-radius: 70% 0 70% 0;
+        background: radial-gradient(circle at 30% 30%, #ffd44d, #f08a00);
+      }
+      section {
+        position: relative;
+        padding: 90px 22px;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .ganesh {
+        font-size: clamp(20px, 5vw, 30px);
+        color: var(--gold);
+        margin-bottom: 6px;
+      }
+      .sub {
+        font-style: italic;
+        color: var(--haldi);
+        margin: 0 0 18px;
+        font-size: 22px;
+        letter-spacing: 1px;
+      }
+      .orn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .orn::before,
+      .orn::after {
+        content: "";
+        width: 70px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold));
+      }
+      .orn::after {
+        transform: scaleX(-1);
+      }
+      .orn svg {
+        width: 30px;
+        height: 30px;
+      }
+      .shubh {
+        letter-spacing: 3px;
+        font-size: 18px;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+      .names {
+        font-size: clamp(36px, 9vw, 100px);
+        line-height: 1.2;
+      }
+      .names .ch {
+        display: inline-block;
+      }
+      .amp {
+        display: inline-block;
+        font-size: 0.42em;
+        padding: 0 0.3em;
+        color: var(--haldi);
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        margin: 0 0.15em;
+      }
+      .date {
+        margin-top: 26px;
+        font-size: clamp(18px, 4.5vw, 26px);
+        border: 2px solid var(--gold);
+        display: inline-block;
+        padding: 10px 26px;
+        border-radius: 50px;
+      }
+      .diya {
+        display: inline-block;
+        margin-top: 34px;
+        filter: drop-shadow(0 0 14px #ffb300);
+      }
+      .diya svg {
+        width: 56px;
+        height: 56px;
+      }
+      .i {
+        width: 1.1em;
+        height: 1.1em;
+        vertical-align: -0.15em;
+        margin-right: 0.35em;
+      }
+      .scroll {
+        position: absolute;
+        bottom: 26px;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+      h2 {
+        font-size: clamp(28px, 6vw, 44px);
+        color: var(--gold);
+        margin-bottom: 26px;
+      }
+      .verse {
+        font-size: clamp(20px, 3.8vw, 25px);
+        line-height: 1.9;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .cards {
+        max-width: 420px;
+        margin: 10px auto 0;
+      }
+      .card {
+        background: linear-gradient(
+          160deg,
+          rgba(255, 244, 220, 0.1),
+          rgba(255, 244, 220, 0.03)
+        );
+        border: 2px solid var(--gold);
+        border-radius: 20px;
+        padding: 30px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .card::before {
+        content: "❂";
+        position: absolute;
+        top: 8px;
+        right: 14px;
+        color: var(--gold);
+        opacity: 0.5;
+      }
+      .card .ic svg {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+      }
+      .card h3 {
+        font-size: 26px;
+        margin: 10px 0 8px;
+        color: var(--haldi);
+      }
+      .card p {
+        line-height: 1.8;
+        font-size: 23px;
+      }
+      .card small {
+        display: block;
+        margin-top: 8px;
+        opacity: 0.75;
+        font-size: 17px;
+      }
+      .count {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .box {
+        width: 96px;
+        font-size: 17px;
+        padding: 16px 0;
+        border-radius: 16px;
+        background: var(--kumkum);
+        border: 2px solid var(--gold);
+      }
+      .box b {
+        display: block;
+        font-size: 36px;
+        font-family: "Yatra One", serif;
+        font-weight: 400;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 10px;
+        padding: 14px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 18px;
+        color: var(--deep);
+        background: linear-gradient(135deg, var(--haldi), var(--gold));
+        font-family: "Yatra One", serif;
+      }
+      .reveal {
+        opacity: 0;
+      }
+      footer {
+        padding: 40px 20px 70px;
+        text-align: center;
+        color: var(--gold);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .petal {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="lock">
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="diya" viewBox="0 0 48 48">
+          <path
+            d="M6 28h36c0 9-8 14-18 14S6 37 6 28z"
+            fill="#c8102e"
+            stroke="#e8b04a"
+            stroke-width="2"
+          />
+          <path
+            d="M24 3c5 6 7 10 4 15-1 2-6 2-8 0-3-5-1-9 4-15z"
+            fill="#ffb300"
+          />
+          <path
+            d="M24 10c2 3 3 5 1.5 7.5-.8 1-2.2 1-3 0C21 15 22 13 24 10z"
+            fill="#fff4dc"
+          />
+        </symbol>
+        <symbol id="marigold" viewBox="0 0 48 48">
+          <g fill="#f59e0b">
+            <ellipse cx="24" cy="10" rx="6" ry="9" />
+            <ellipse
+              cx="24"
+              cy="10"
+              rx="6"
+              ry="9"
+              transform="rotate(45 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="10"
+              rx="6"
+              ry="9"
+              transform="rotate(90 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="10"
+              rx="6"
+              ry="9"
+              transform="rotate(135 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="10"
+              rx="6"
+              ry="9"
+              transform="rotate(180 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="10"
+              rx="6"
+              ry="9"
+              transform="rotate(225 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="10"
+              rx="6"
+              ry="9"
+              transform="rotate(270 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="10"
+              rx="6"
+              ry="9"
+              transform="rotate(315 24 24)"
+            />
+          </g>
+          <g fill="#fbbf24">
+            <ellipse
+              cx="24"
+              cy="14"
+              rx="4"
+              ry="6"
+              transform="rotate(22 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="14"
+              rx="4"
+              ry="6"
+              transform="rotate(112 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="14"
+              rx="4"
+              ry="6"
+              transform="rotate(202 24 24)"
+            />
+            <ellipse
+              cx="24"
+              cy="14"
+              rx="4"
+              ry="6"
+              transform="rotate(292 24 24)"
+            />
+          </g>
+          <circle cx="24" cy="24" r="5" fill="#b45309" />
+        </symbol>
+        <symbol id="leaf" viewBox="0 0 48 48">
+          <path d="M24 2C37 12 39 32 24 46 9 32 11 12 24 2z" fill="#2f8f3a" />
+          <path d="M24 7v36" stroke="#a7e3a0" stroke-width="1.5" />
+        </symbol>
+        <symbol id="rings" viewBox="0 0 48 48">
+          <circle
+            cx="17"
+            cy="30"
+            r="12"
+            fill="none"
+            stroke="#e8b04a"
+            stroke-width="3.5"
+          />
+          <circle
+            cx="31"
+            cy="30"
+            r="12"
+            fill="none"
+            stroke="#f5c518"
+            stroke-width="3.5"
+          />
+          <path d="M17 5l5 6-5 6-5-6z" fill="#fff4dc" stroke="#e8b04a" />
+        </symbol>
+        <symbol id="pin" viewBox="0 0 48 48">
+          <path
+            d="M24 3c8 0 14 6 14 14 0 10-14 28-14 28S10 27 10 17C10 9 16 3 24 3z"
+            fill="currentColor"
+          />
+          <circle cx="24" cy="17" r="5" fill="#3d0710" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div id="curtain">
+      <div class="panel l"></div>
+      <div class="panel r"></div>
+    </div>
+    <div id="seal">
+      <div class="ring">
+        <svg><use href="#diya" /></svg>
+      </div>
+      <p class="yatra">Open Invitation</p>
+      <small>Tap to open</small>
+    </div>
+    <div id="toran"></div>
+    <div id="petals"></div>
+    <audio id="bgMusic" src="./song.mp3" loop preload="auto"></audio>
+    <button
+      id="musicBtn"
+      type="button"
+      aria-label="Pause music"
+      title="Pause music"
+      style="
+        display: none;
+        position: fixed;
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        z-index: 200;
+        width: 52px;
+        height: 52px;
+        border: 2px solid #e8b04a;
+        border-radius: 50%;
+        background: radial-gradient(circle, #c8102e, #8a0b1f);
+        color: #fff4dc;
+        cursor: pointer;
+        /* display: grid; */
+        place-items: center;
+        box-shadow: 0 0 18px rgba(232, 176, 74, 0.45);
+      "
+    >
+      <!-- Pause icon -->
+      <svg
+        id="pauseIcon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+        <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+      </svg>
+
+      <!-- Play icon -->
+      <svg
+        id="playIcon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        style="display: none; margin-left: 3px"
+      >
+        <polygon points="6 3 20 12 6 21 6 3" fill="currentColor"></polygon>
+      </svg>
+    </button>
+    <main>
+      <section class="hero">
+        <div class="ganesh reveal">॥ Shree Ganeshaya Namah ॥</div>
+        <div class="sub reveal">Shubham Karoti Kalyanam</div>
+        <div class="orn reveal">
+          <svg><use href="#marigold" /></svg>
+        </div>
+        <div class="shubh reveal">Together with our families · Engagement</div>
+        <h1 class="names yatra" id="names"></h1>
+        <div class="date reveal" id="dateTxt"></div>
+        <div class="diya reveal" id="diya">
+          <svg><use href="#diya" /></svg>
+        </div>
+        <div class="scroll reveal">Scroll down ↓</div>
+      </section>
+
+      <div class="paithani"></div>
+
+      <section>
+        <div class="orn reveal">
+          <svg><use href="#rings" /></svg>
+        </div>
+        <h2 class="reveal">You Are Invited</h2>
+        <p class="verse reveal">
+          Joy is in the air, and our hearts are full.<br />With the blessings of
+          our families, we are delighted to invite you to the
+          <b class="gold">engagement ceremony</b> of
+          <span class="gold" id="n1"></span> and
+          <span class="gold" id="n2"></span>.
+        </p>
+        <p class="verse reveal" style="margin-top: 18px">
+          Please join us with your family and bless the couple as they begin
+          their journey together.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="reveal">Event Details</h2>
+        <div class="cards">
+          <div class="card reveal">
+            <div class="ic">
+              <svg class="i"><use href="#rings" /></svg>
+            </div>
+            <h3>Engagement Ceremony</h3>
+            <p id="e2"></p>
+            <small>Ring exchange ceremony</small>
+          </div>
+        </div>
+      </section>
+
+      <div class="paithani"></div>
+
+      <section>
+        <h2 class="reveal">Counting Down to the Big Day</h2>
+        <div class="count reveal" id="count"></div>
+      </section>
+
+      <section>
+        <h2 class="reveal">Venue</h2>
+        <p class="verse reveal" id="venue"></p>
+        <div class="reveal" style="margin-top: 20px">
+          <a class="btn" id="map" target="_blank" rel="noopener"
+            ><svg class="i"><use href="#pin" /></svg>View on Map</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="reveal">
+      <div class="paithani" style="margin-bottom: 26px"></div>
+      <p class="yatra" style="font-size: 22px">
+        We can’t wait to celebrate with you.
+      </p>
+      <p style="margin-top: 10px; opacity: 0.85">With love,</p>
+      <p style="margin-top: 4px" id="fam"></p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+      /* ====== EDIT DETAILS HERE ====== */
+      const CFG = {
+        name1: "Hemalata",
+        name2: "Sanket",
+        dateISO: "2026-10-24T11:00:00+05:30",
+        dateText: "Saturday, 24 October 2026",
+        timeText: "Saturday, 24 October 2026 · 11:00 AM",
+        venue: "Ramvatika Near Sarthi Heights, Ankleswar",
+        mapUrl:
+          "https://www.google.com/maps/place/Ramvatika+Raw+house/@21.5945695,73.0325281,737m/data=!3m1!1e3!4m6!3m5!1s0x3be02390e0398031:0x6794bf032133bc53!8m2!3d21.5942064!4d73.0326461!16s%2Fg%2F11sz0gxjsf?hl=en&entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
+        family: "The Patil Families",
+      };
+      /* ========================================= */
+      const $ = (id) => document.getElementById(id);
+      $("n1").textContent = CFG.name1;
+      $("n2").textContent = CFG.name2;
+      $("dateTxt").textContent = CFG.dateText;
+      $("e2").textContent = CFG.timeText;
+      $("venue").textContent = CFG.venue;
+      $("map").href = CFG.mapUrl;
+      $("fam").textContent = CFG.family;
+
+      const nm = $("names");
+      [...CFG.name1].forEach((c) => {
+        const s = document.createElement("span");
+        s.className = "ch";
+        s.textContent = c;
+        nm.appendChild(s);
+      });
+      nm.insertAdjacentHTML("beforeend", '<span class="amp ch">and</span>');
+      [...CFG.name2].forEach((c) => {
+        const s = document.createElement("span");
+        s.className = "ch";
+        s.textContent = c;
+        nm.appendChild(s);
+      });
+      gsap.set(".ch", { opacity: 0, y: 80, rotateX: -90 });
+
+      const tor = $("toran");
+      for (let i = 0; i < 9; i++) {
+        const s = document.createElement("span");
+        s.innerHTML =
+          '<svg><use href="#' + (i % 2 ? "leaf" : "marigold") + '"/></svg>';
+        tor.appendChild(s);
+      }
+
+      const cd = $("count");
+      ["Days", "Hours", "Minutes", "Seconds"].forEach((l) =>
+        cd.insertAdjacentHTML(
+          "beforeend",
+          `<div class="box"><b>00</b>${l}</div>`,
+        ),
+      );
+      const bs = cd.querySelectorAll("b");
+      function tick() {
+        let d = Math.max(0, new Date(CFG.dateISO) - new Date()) / 1000;
+        [
+          Math.floor(d / 86400),
+          Math.floor((d % 86400) / 3600),
+          Math.floor((d % 3600) / 60),
+          Math.floor(d % 60),
+        ].forEach((v, i) => (bs[i].textContent = String(v).padStart(2, "0")));
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      function petals() {
+        const w = $("petals");
+        for (let i = 0; i < 26; i++) {
+          const p = document.createElement("div");
+          p.className = "petal";
+          w.appendChild(p);
+          gsap.set(p, {
+            x: gsap.utils.random(0, innerWidth),
+            scale: gsap.utils.random(0.6, 1.4),
+            rotation: gsap.utils.random(0, 360),
+          });
+          gsap.to(p, {
+            y: innerHeight + 60,
+            duration: gsap.utils.random(6, 12),
+            delay: gsap.utils.random(0, 8),
+            repeat: -1,
+            ease: "none",
+          });
+          gsap.to(p, {
+            x: "+=" + gsap.utils.random(-80, 80),
+            rotation: "+=360",
+            duration: gsap.utils.random(3, 5),
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+          });
+        }
+      }
+
+      let opened = false;
+      $("seal").addEventListener("click", () => {
+        if (opened) return;
+        opened = true;
+        const bgMusic = $("bgMusic");
+        bgMusic.volume = 0.6;
+
+        bgMusic.play().catch((error) => {
+          console.log("Music play nahi hua:", error);
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        const tl = gsap.timeline();
+        tl.to("#seal", {
+          scale: 1.3,
+          opacity: 0,
+          duration: 0.6,
+          ease: "back.in(2)",
+        })
+          .to(
+            ".panel.l",
+            { xPercent: -100, duration: 1.6, ease: "power3.inOut" },
+            0.3,
+          )
+          .to(
+            ".panel.r",
+            { xPercent: 100, duration: 1.6, ease: "power3.inOut" },
+            0.3,
+          )
+          .set("#curtain,#seal", { display: "none" })
+          .add(() => {
+            document.body.classList.remove("lock");
+            petals();
+          }, "-=.4")
+          .to("#toran", { y: 0, duration: 1.2, ease: "bounce.out" }, "-=1.2")
+          .to("#toran span", {
+            rotation: 6,
+            duration: 1.6,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+            stagger: { each: 0.15, from: "center" },
+          })
+          .to(
+            ".hero .reveal:not(.diya):not(.scroll):not(.date)",
+            { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 },
+            "-=.8",
+          )
+          .to(
+            ".ch",
+            {
+              opacity: 1,
+              y: 0,
+              rotateX: 0,
+              duration: 1,
+              stagger: 0.08,
+              ease: "back.out(1.8)",
+            },
+            "-=.4",
+          )
+          .to(".date,.diya,.scroll", {
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.25,
+          });
+        gsap.to("#diya", {
+          scale: 1.15,
+          duration: 0.7,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut",
+          delay: 3,
+        });
+        gsap.utils
+          .toArray("section:not(.hero) .reveal,footer.reveal")
+          .forEach((el) => {
+            gsap.fromTo(
+              el,
+              { opacity: 0, y: 60, scale: 0.95 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: { trigger: el, start: "top 88%" },
+              },
+            );
+          });
+      });
+
+      const bgMusic = document.getElementById("bgMusic");
+      const musicBtn = document.getElementById("musicBtn");
+      const playIcon = document.getElementById("playIcon");
+      const pauseIcon = document.getElementById("pauseIcon");
+      const seal = document.getElementById("seal");
+
+      bgMusic.loop = true;
+      bgMusic.volume = 0.6;
+
+      // Button initially hidden
+      musicBtn.style.display = "none";
+
+      // Play song only when Open Invitation is tapped
+      seal.addEventListener("click", async () => {
+        musicBtn.style.display = "grid";
+
+        try {
+          await bgMusic.play();
+        } catch (error) {
+          console.log("Music playback failed:", error);
+          playIcon.style.display = "block";
+          pauseIcon.style.display = "none";
+        }
+      });
+
+      // Play / Pause toggle
+      musicBtn.addEventListener("click", async () => {
+        if (bgMusic.paused) {
+          try {
+            await bgMusic.play();
+          } catch (error) {
+            console.log("Music playback failed:", error);
+          }
+        } else {
+          bgMusic.pause();
+        }
+      });
+
+      // Update SVG icon
+      bgMusic.addEventListener("play", () => {
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+        musicBtn.setAttribute("aria-label", "Pause music");
+      });
+
+      bgMusic.addEventListener("pause", () => {
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+        musicBtn.setAttribute("aria-label", "Play music");
+      });
+    </script>
+  </body>
+</html>
